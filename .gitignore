@@ -1,0 +1,4 @@
+build/
+devel/
+src/.idea
+src/cmake-build-debug

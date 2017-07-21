@@ -1,0 +1,21 @@
+<launch>
+  <include file="$(find zed_wrapper)/launch/zed.launch"/>
+  <include file="$(find buggy_2dnav)/launch/robot_ekf.launch"/>
+  <include file="$(find buggy_2dnav)/launch/rtabmap_run.launch"/>
+
+  <node pkg="odom_broadcaster" type="odom_broadcaster" name="odom_broadcaster" output="screen">
+  	<param name="odom_topic" type="string" value="/odometry/filtered" />
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="odom_camera_link" args="0.46 0 0.43 0 0 0 odom camera_link 100"/>
+
+  <arg name="pi/2" value="1.5707963267948966" />
+  <node pkg="tf" type="static_transform_publisher" name="camera_link_zed_depth" args="0 0 0 -$(arg pi/2) 0 -$(arg pi/2) camera_link zed_depth_frame 100" /> 
+  <node pkg="tf" type="static_transform_publisher" name="camera_link_zed_initial" args="0 0 0 0 0 0 camera_link zed_initial_frame 100"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="base_link_sonar_back_left" args="-0.20 0.05 0 2.79 0 0 base_link sonar_back_left 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_link_sonar_back_right" args="-0.20 -0.05 0 3.49 0 0 base_link sonar_back_right 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_link_sonar_front_left" args="0.66 0.06 0 0.24 0 0 base_link sonar_front_left 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_link_sonar_front_right" args="0.66 -0.06 0 -0.24 0 0 base_link sonar_front_right 100"/>
+
+</launch>
