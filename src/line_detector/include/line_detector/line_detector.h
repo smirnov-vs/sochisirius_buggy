@@ -107,11 +107,11 @@ class LineDetector
     //#                       #        camera        #
     //################################################
 
-    inline cv::Point2f imgToLocalSpace(cv::Point2f point);
+    cv::Point2f imgToLocalSpace(const cv::Point2f& point);
 
-    inline cv::Point2f rotateVector(cv::Point2f v, double r);
+    cv::Point2f rotateVector(const cv::Point2f& v, double r);
 
-    void gammaCorrection(cv::Mat& src, cv::Mat& dst, float fGamma);
+    void gammaCorrection(const cv::Mat& src, cv::Mat& dst, float fGamma);
 
 public:
     LineDetector();

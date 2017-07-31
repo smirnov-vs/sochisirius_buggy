@@ -290,19 +290,19 @@ void LineDetector::process(){
     }
 }
 
-inline cv::Point2f LineDetector::imgToLocalSpace(cv::Point2f point) {
+cv::Point2f LineDetector::imgToLocalSpace(const cv::Point2f& point) {
     float x = (height - point.y) / height * real_height;
     float y = (point.x - (width / 2)) / width * real_width;
     return cv::Point2f(x, y);
 }
 
-inline cv::Point2f LineDetector::rotateVector(cv::Point2f v, double r){
+cv::Point2f LineDetector::rotateVector(const cv::Point2f& v, double r){
     double ca = cos(r);
     double sa = sin(r);
     return cv::Point2f(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
 }
 
-void LineDetector::gammaCorrection(cv::Mat& src, cv::Mat& dst, float fGamma)
+void LineDetector::gammaCorrection(const cv::Mat& src, cv::Mat& dst, float fGamma)
 {
     unsigned char lut[256];
     for (int i = 0; i < 256; i++)
@@ -317,14 +317,14 @@ void LineDetector::gammaCorrection(cv::Mat& src, cv::Mat& dst, float fGamma)
         case 1:
         {
             cv::MatIterator_<uchar> it, end;
-            for (it = dst.begin<uchar>(), end = dst.end<uchar>(); it != end; it++)
+            for (it = dst.begin<uchar>(), end = dst.end<uchar>(); it != end; ++it)
             *it = lut[(*it)];
             break;
         }
         case 3:
         {
             cv::MatIterator_<cv::Vec3b> it, end;
-            for (it = dst.begin<cv::Vec3b>(), end = dst.end<cv::Vec3b>(); it != end; it++)
+            for (it = dst.begin<cv::Vec3b>(), end = dst.end<cv::Vec3b>(); it != end; ++it)
             {
             (*it)[0] = lut[((*it)[0])];
             (*it)[1] = lut[((*it)[1])];

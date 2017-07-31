@@ -28,13 +28,10 @@ add_library(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
-
-
+)
 
 add_executable(${PROJECT_NAME}_node src/line_detector_node.cpp)
 
 target_link_libraries(${PROJECT_NAME}_node
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
   line_detector
 )
