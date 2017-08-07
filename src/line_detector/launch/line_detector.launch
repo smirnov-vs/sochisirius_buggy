@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="line_detector" type="line_detector_node" name="line_detector">
+        <param name="image_topic" value="/zed/rgb/image_rect_color" />
+        <param name="grid_topic" value="/rtabmap/grid_map" />
+        <param name="odometry_topic" value="/odometry_filtered" />
+        <param name="output_topic" value="/line_detector/map" />
+        <param name="image_out_topic" value="/line_detector/image" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="real_width" value="2" />
+        <param name="real_height" value="2" />
+        <param name="frequency" value="30" />
+        <param name="alpha" value="2.4" />
+        <param name="beta" value="0.0" />
+        <param name="gamma" value="0.9" />
+        <param name="white" value="true" />
+    </node>
+</launch>
